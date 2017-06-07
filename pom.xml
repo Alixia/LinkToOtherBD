@@ -18,6 +18,7 @@
         <module>org.getalp.lexsema-axalign</module>
         <module>org.getalp.lexsema-translation</module>
         <module>org.getalp.lexsema-examples</module>
+        <module>SimilarityToOtherDB</module>
     </modules>
 
     <name>lexsema</name>

@@ -257,7 +257,7 @@ public class Stemming_Porter {
 
         String newWord = word;
 
-        if(contientVoyelle(word.substring(0, word.length()-1)) && (word.charAt(word.length()-1) == 'y')){
+        if(word.length()>1 && contientVoyelle(word.substring(0, word.length()-1)) && (word.charAt(word.length()-1) == 'y')){
             newWord = word.substring(0, word.length()-1);
             newWord += "i";
         }
@@ -377,7 +377,7 @@ public class Stemming_Porter {
             newWord = word.substring(0, word.length()-4);
         }else if(suffixIdentique(word, "ent") && mesure(word.substring(0, word.length()-3)) > 1){
             newWord = word.substring(0, word.length()-3);
-        }else if(suffixIdentique(word, "ion") && (( (word.substring(0, word.length()-3).charAt(word.substring(0, word.length()-3).length()) == 't') ) || (word.substring(0, word.length()-3).charAt(word.substring(0, word.length()-3).length())) == 's') && mesure(word.substring(0, word.length()-3)) > 1){
+        }else if(suffixIdentique(word, "ion") && (( (word.substring(0, word.length()-3).charAt(word.substring(0, word.length()-3).length()-1) == 't') ) || (word.substring(0, word.length()-3).charAt(word.substring(0, word.length()-3).length()-1)) == 's') && mesure(word.substring(0, word.length()-3)) > 1){
             newWord = word.substring(0, word.length()-3);
         }else if(suffixIdentique(word, "ou") && mesure(word.substring(0, word.length()-2)) > 1){
             newWord = word.substring(0, word.length()-2);
@@ -438,14 +438,16 @@ public class Stemming_Porter {
     public static String run(String sentence){
         String[] words = sentence.split(" ");
         for(int i = 0; i<words.length; i++){
-            words[i] = step1a(words[i]);
-            words[i] = step1b(words[i]);
-            words[i] = step1c(words[i]);
-            words[i] = step2(words[i]);
-            words[i] = step3(words[i]);
-            words[i] = step4(words[i]);
-            words[i] = step5a(words[i]);
-            words[i] = step5b(words[i]);
+            if(!words[i].equals("")) {
+                words[i] = step1a(words[i]);
+                words[i] = step1b(words[i]);
+                words[i] = step1c(words[i]);
+                words[i] = step2(words[i]);
+                words[i] = step3(words[i]);
+                words[i] = step4(words[i]);
+                words[i] = step5a(words[i]);
+                words[i] = step5b(words[i]);
+            }
         }
         String newSentence = "";
         for(String s : words){
